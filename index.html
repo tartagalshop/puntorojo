@@ -19,7 +19,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/styles.css">
 <style>
-/* Estilos y animaciones para el botón flotante y el globo de chat */
+/* Estilos y animaciones para el botón flotante y el globo de chat estilo WhatsApp */
 .whatsapp-float {
   position: fixed;
   bottom: 20px;
@@ -46,7 +46,7 @@
   fill: #fff;
 }
 
-/* Animación de baile / rebote */
+/* Animación de baile / rebote del icono */
 @keyframes whatsappBaile {
   0%, 100% { transform: translateY(0) rotate(0deg); }
   15% { transform: translateY(-8px) rotate(-10deg); }
@@ -55,42 +55,44 @@
   60% { transform: translateY(0) rotate(6deg); }
 }
 
-/* Burbuja de texto flotante */
+/* Burbuja flotante idéntica a un mensaje de WhatsApp */
 .wa-chat-bubble {
   position: fixed;
-  bottom: 30px;
-  right: 90px;
-  background: #fff;
-  color: #222;
+  bottom: 25px;
+  right: 92px;
+  background: #e7ffdb; /* Color clásico de burbuja de chat entrante de WhatsApp */
+  color: #111b21;
   padding: 10px 14px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  border-radius: 7.5px;
+  box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13);
   font-family: 'Bricolage Grotesque', sans-serif;
   font-size: 14px;
   font-weight: 600;
   z-index: 998;
-  max-width: 220px;
-  border-left: 4px solid #25d366;
+  max-width: 230px;
   opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transform: scale(0.8) translateY(10px);
+  transition: opacity 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   pointer-events: none;
 }
+
 .wa-chat-bubble.show {
   opacity: 1;
-  transform: translateY(0);
+  transform: scale(1) translateY(0);
 }
-/* Flechita de la burbuja */
+
+/* Colita de la burbuja de chat estilo WhatsApp */
 .wa-chat-bubble::after {
   content: '';
   position: absolute;
-  right: -6px;
-  top: 15px;
+  right: -8px;
+  top: 12px;
   width: 0;
   height: 0;
-  border-top: 6px solid transparent;
-  border-bottom: 6px solid transparent;
-  border-left: 6px solid #fff;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 9px solid #e7ffdb;
 }
 </style>
 </head>
@@ -171,7 +173,7 @@
   </div>
 </footer>
 
-<!-- Botón flotante y burbuja de chat aleatoria -->
+<!-- Burbuja de chat estilo WhatsApp y botón flotante -->
 <div class="wa-chat-bubble" id="waBubble">¿Qué vas a pedir hoy? 🔥</div>
 <a class="whatsapp-float whatsapp-link" href="/contacto/" data-message="Hola, quería consultar por el menú." aria-label="Escribir por WhatsApp"><svg viewBox="0 0 24 24"><path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.758.459 3.473 1.331 4.986L2 22l5.188-1.361a9.927 9.927 0 0 0 4.843 1.242h.004c5.515 0 9.969-4.453 9.969-9.969 0-2.663-1.037-5.167-2.92-7.05A9.903 9.903 0 0 0 12.031 2zm5.814 14.261c-.244.687-1.422 1.314-1.976 1.397-.511.076-1.158.108-1.869-.118-.431-.137-.984-.32-1.693-.626-2.98-1.286-4.926-4.288-5.075-4.486-.149-.198-1.213-1.613-1.213-3.077 0-1.464.768-2.184 1.04-2.482.273-.298.595-.372.793-.372.198 0 .397.002.57.01.183.009.428-.069.67.511.248.595.842 2.055.916 2.204.074.149.124.322.025.521-.099.198-.149.322-.298.496-.149.174-.313.388-.446.521-.149.149-.304.31-.131.608.174.298.771 1.272 1.656 2.061 1.138 1.015 2.097 1.33 2.395 1.479.298.149.471.124.645-.074.174-.198.744-.868.942-1.166.198-.298.397-.248.67-.149.273.099 1.736.819 2.034.968.298.149.496.223.57.347.075.124.075.719-.169 1.406z"/></svg></a>
 
@@ -223,7 +225,7 @@
 <script src="/assets/js/config.js"></script>
 <script src="/assets/js/app.js"></script>
 <script>
-  // Script para rotar mensajes randoms en la burbuja de WhatsApp
+  // Mensajes dinámicos simulando la burbuja de chat de la app
   const mensajesRandom = [
     "¿Qué vas a pedir hoy? 🔥",
     "Che, ¿me preparás una oferta de muzzas?",
@@ -249,10 +251,10 @@
     currentIndex = (currentIndex + 1) % mensajesRandom.length;
   }
 
-  // Muestra el primer mensaje a los 2 segundos de cargar la web
+  // Primer mensaje a los 2 segundos
   setTimeout(mostrarSiguienteMensaje, 2000);
 
-  // Y después repite cada 9 segundos
+  // Repetición cada 9 segundos
   setInterval(mostrarSiguienteMensaje, 9000);
 </script>
 </body>
